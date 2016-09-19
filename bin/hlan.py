@@ -13,8 +13,9 @@ def main(args):
 if __name__=='__main__':
     try:
         if ValiddLogin() or sys.argv[1]=='User':
-            main()
+            print(main(sys.argv))
         else:
             print('no login,please excute: \n python hlan.py User admin 123456')
-    except:
+    except Exception as e:
+        print(e)
         main(['','Help'])
