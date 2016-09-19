@@ -10,17 +10,6 @@ def execCmd(ip,v,g,rs=True):
     rs=run_cmd(hostname=ip,password=v[1],username=v[0],port=v[2],echo_cmd=g)
     res=rs.run()
     mod_json[ip]=res
-#     if rs:
-#         for i in res['value']:
-#             print('%s:\n%s' %(res['ip'],bytes.decode((res['value'][i]))))
-#     else:
-#     print(res)
-#     print('ip:%s') % (res['ip'])
-#     print('status:%s')%(res['status'])
-#     if res['status']=='ok':
-#         for y in res['value']:
-#             print('command:%s\n%s')%(y,res['value'][y])
-
 def main(argvs):
     global mod_json
     mod_json={}
@@ -42,4 +31,7 @@ def main(argvs):
                     continue
                 else:
                     fina_flag=False
-    return mod_json
+    res=''               
+    for i in mod_json:
+        res+='\n%s\t%s:\n%s' % (i,mod_json[i]['status'],mod_json[i]['value'])
+    return res
