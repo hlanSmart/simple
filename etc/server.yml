@@ -1,0 +1,14 @@
+---
+#group
+test:
+  #ip
+  127.0.0.1:
+    #user
+    - root
+    #pass
+    - 123456
+    #port,default 22
+    - 22
+  192.168.41.68:
+    - root
+    - 123456
