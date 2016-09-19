@@ -4,34 +4,27 @@ import paramiko,datetime,os
 class run_cmd():
     def __init__(self,hostname=None,password=None,username=None,port=None,echo_cmd=None):
         self.hostname=hostname
-        self.password=password
+        self.password=str(password)
         self.username=username
         self.port=port
         self.echo_cmd=echo_cmd
-        self.thread_stop=False
     def run(self):
-        print self.echo_cmd,self.port,self.hostname,self.password
+#         print self.echo_cmd,self.port,self.hostname,self.password
         paramiko.util.log_to_file('/tmp/paramiko.log')
         s=paramiko.SSHClient()
         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         res_dict={}
-        print(self.echo_cmd)
-        s.connect(hostname = self.hostname,username=self.username, password=self.password,port=self.port)
-        res_dict['status']='ok'
-            
-        res_dict['value']=stdin,stdout,stderr=s.exec_command(self.echo_cmd)
-        s.close()
-#         try:
-#             s.connect(hostname = self.hostname,username=self.username, password=self.password,port=self.port)
-#             res_dict['status']='ok'
-#             
-#             res_dict['value']=stdin,stdout,stderr=s.exec_command(self.echo_cmd)
-#             s.close()
-#         except Exception as e:
-#             res_dict['status']='error'
-#             res_dict['value']={'error':e}
-#         finally:
-#             return res_dict
+        try:
+            s.connect(hostname = self.hostname,username=self.username, password=self.password,port=self.port)
+            res_dict['status']='ok'
+            stdin,stdout,stderr=s.exec_command(self.echo_cmd) 
+            res_dict['value']=stdout.read()
+            s.close()
+        except Exception as e:
+            res_dict['status']='error'
+            res_dict['value']={'error':e}
+        finally:
+            return res_dict
 class upload_sftp():
     def __init__(self,hostname=None,password=None,username=None,port=None,local_dir=None,remote_dir=None):
         self.hostname=hostname
