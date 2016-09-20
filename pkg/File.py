@@ -2,7 +2,11 @@
 #coding:utf-8
 
 import os
-
+def isCreateDir(P):
+    if os.path.exists(P):
+        pass
+    else:
+        os.makedirs(P)
 def isCreateFile(P):
     if os.path.exists(P):
         with open(P) as f:
