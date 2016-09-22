@@ -1,6 +1,7 @@
 #!/usr/bin/python
 #coding:utf-8
 from pkg.File import isCreateFile,WriteFile
+
 import datetime,time
 def ValiddLogin():
     login_valid=isCreateFile('/tmp/hlan')

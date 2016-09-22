@@ -10,7 +10,7 @@ class run_cmd():
         self.echo_cmd=echo_cmd
     def run(self):
 #         print self.echo_cmd,self.port,self.hostname,self.password
-        paramiko.util.log_to_file('/tmp/paramiko.log')
+#         paramiko.util.log_to_file('/tmp/paramiko.log')
         s=paramiko.SSHClient()
         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         res_dict={}
@@ -54,8 +54,9 @@ class SFTP():
     def close(self):
         self.sftp.close()
 if __name__=='__main__':
-    test=SFTP(hostname='127.0.0.1',password='123456',username='root',port=22)
-#     test.get('/etc/hosts', '/tmp/hosts')
-    test.put('/etc/hosts', '/tmp/hosts')
-    test.close()
+#     test=SFTP(hostname='127.0.0.1',password='123456',username='root',port=22)
+# #     test.get('/etc/hosts', '/tmp/hosts')
+#     test.put('/etc/hosts', '/tmp/hosts')
+#     test.close()
+    print(paramiko.__version__)
         
