@@ -16,13 +16,13 @@ def main(argvs):
     global mod_json
     mod_json={}
 #     print(argvs)
-    server_list=readServer(argvs[3])
+    server_list=readServer(argvs[2])
     g=argvs[3]
     T_thread=[]
     for (server,v) in server_list.items():
-        if argvs[2]=='get':
+        if argvs[3]=='get':
             t=threading.Thread(target=getFile,args=(server,v, argvs[4],argvs[5]))
-        elif argvs[2]=='put':
+        elif argvs[3]=='put':
             t=threading.Thread(target=putFile,args=(server,v, argvs[4],argvs[5]))
         else:
             print('''get-file:\tpython hlan.py File get server-group Remote-Path\nput-file:\tpython hlan.py File put server-group local_file remote_file''')

@@ -1,0 +1,7 @@
+---
+group: test
+task:
+  - name: get memory 
+    CMD: '!free -m>/tmp/mem'
+  - name: get memory file
+    File: get /tmp/mem /tmp/mem

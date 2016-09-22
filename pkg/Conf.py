@@ -17,3 +17,11 @@ def readServer(sg,sl=False):                #sg ServerGroup 服务器组 sl Serv
                 gp[i].append(22)
         return gp
     return False                            #Server Group 不存在时返回False
+def readYaml(P):
+    try:
+        with open(P) as f:
+            return yaml.load(f)
+    except Exception as e:
+        print(e)
+        return False
+        
